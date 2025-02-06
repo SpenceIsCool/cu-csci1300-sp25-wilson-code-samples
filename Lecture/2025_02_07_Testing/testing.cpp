@@ -444,6 +444,10 @@
 // using namespace std;
 
 // // declare the function(s)
+// // doing it here makes it so that I don't have to worry
+// // about ordering later on
+// // lookup "forward declaration" in C++
+// // ADVANCED: Lookup "type safety" in C++
 // bool isEven( int num );
 // void testIsEven();
 
