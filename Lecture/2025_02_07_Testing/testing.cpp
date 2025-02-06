@@ -417,6 +417,7 @@
 //     // the isEven function...
 //     // we make sure we can run the code....
 //     assert( isEven( 1 ) == false );
+//     // NOTE: `==` is "commutative" just like `+` and `*`
 //     assert( false == isEven( 1 ) );
 //     assert( !isEven( 1 ) );
 //     return;
