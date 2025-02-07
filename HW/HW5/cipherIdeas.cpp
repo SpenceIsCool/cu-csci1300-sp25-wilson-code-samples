@@ -78,8 +78,6 @@ void testEncrypt( )
     // assert( 'b' == encryptLower('c' , -1));
     // assert( 'a' == encryptLower('c' , -2));
 
-
-    
     // // I'm a bit harder (consider using `%` as part of solution)
     // assert( 'a' == encryptLower('a' , 26));
     // assert( 'c' == encryptLower('a' , 28));
@@ -91,6 +89,7 @@ void testEncrypt( )
     // assert( 'y' == encryptLower('a' , -2));
 
     // // I am likely extra hard tests
+    // // consider an `unsigned char`
     // assert( 'u' == encryptLower('s', -50));
     // assert( 'v' == encryptLower('z', 22));
 }
