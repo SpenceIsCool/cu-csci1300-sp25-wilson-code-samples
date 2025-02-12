@@ -32,6 +32,7 @@ bool DEBUG = false;
 
 // NOTE how we can quickly observe what functions are available.
 // some setup stuff
+// VSCode has Hot-keys to "go to the definition" of a function
 bool setDebug();
 bool handleMenu( );
 // some fun old stuff
@@ -203,20 +204,37 @@ void doublingPenny( )
 {
     // SET: value = 0.01
     double value = 0.01;
+    
     // SET days remaining = 31
-    int days = 31;
-
     // REPEATE while days remaining
-    while ( days > 0 ) {
+    // Decrease days remaining
+    for ( int days = 31 ; days > 0 ; days-- ) {
         if ( DEBUG ) cout << "The value is " << value << " with " << days << " remaining to compound interest." << endl;
         // Double the value
         value *= 2;
-        // Decrease days remaining
-        days--;
+        
     }
 
     cout << "After 31 days the value of the magic penny is: " << value << endl;
 }
+// void doublingPenny( )
+// {
+//     // SET: value = 0.01
+//     double value = 0.01;
+//     // SET days remaining = 31
+//     int days = 31;
+
+//     // REPEATE while days remaining
+//     while ( days > 0 ) {
+//         if ( DEBUG ) cout << "The value is " << value << " with " << days << " remaining to compound interest." << endl;
+//         // Double the value
+//         value *= 2;
+//         // Decrease days remaining
+//         days--;
+//     }
+
+//     cout << "After 31 days the value of the magic penny is: " << value << endl;
+// }
 
 
 
@@ -290,26 +308,63 @@ void division ( )
     cout << x << " % " << y << " = " << x%y << endl;
 }
 
+/**
+ * asked after class, what is my favorite kind of loop?
+ * I like to do the following
+ * Note that each line does exactly one thing
+ * the while condition `keepGoing` just feels easier to read to me
+ */
+int idk()
+{
+    bool keepGoing = true;
+    int i = 0;
+    while ( keepGoing )
+    {
+        cout << "Hello" << endl;
+        i++;
+        if ( i > 5 )
+        {
+            keepGoing = false;
+        }
+    }
+    return 1;
+}
 
 /**
  * productOfNumbers
  * ask the user how many numbers they want us to find the product of
  * then find that product
- * 
- * we read the above small description
- * we use this to write an algorithm, or psudo code like that written below
  */
 void productOfNumbers()
 {
     // BEGIN
     // Ask the user how many numbers they care to get a product of
+    int count;
+    cout << "how many numbers will you give me?" << endl;
+    cin >> count;
     // initialize some partial product tracker
+    // int productSoFar = 0;  // 0 will cause us to always get 0
+    // the identity of multiplication is 1
+    int productSoFar = 1;
     // REPEATE while more numbers need to be gotten
+    while ( count > 0 )
+    {
         // get the value 
+        int thisNumber;
+        cout << "give me one number please:" << endl;
+        // cin lets me have space separated inputs
+        // so I can technically have them all at once
+        cin >> thisNumber;
         // update the partial product tracker
+        // productSoFar * thisNumber; // not quite enough
+        // productSoFar = productSoFar * thisNumber; // good enough, but lets make fancy syntax
+        productSoFar *= thisNumber;
             // CHALLENGE: what if the product could be known early?
-        // DON'T FORGET: to make sure this loop actually ends...
+        // OOPS: bad comments, don't forget to decrement count
+        count--;
+    }
     // SHOW the value of the product
+    cout << "I found that product you asked for: " << productSoFar << endl;
     // END
 
     // ADDED LATE: we should show string iterations...
@@ -359,7 +414,7 @@ void forLoops()
 /**
  * countChar
  * count the number of times some character appears in some string
- * @param s: the string of interest
+ * * @param s: the string of interest
  * @param c: the character of interst
  * @returns: the number of time c appears in s
  */
@@ -369,8 +424,7 @@ int countChar( string s, char c )
     // have some kind of counter set to 0
     int count = 0;
     // REPEATE: until the full string is read
-    // techincal note: some computers require `unsigned` here. others don't.
-    for ( unsigned int i = 0 ; i < s.length() ; i++ )
+    for ( int i = 0 ; i < s.length() ; i++ )
     {
         // get the left-most unread character
         char leftMost = s[i];

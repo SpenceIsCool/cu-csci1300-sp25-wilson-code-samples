@@ -1,3 +1,8 @@
+
+
+// ADDED:: TECHNICAL NOTE: some computers need `unsigned` in countChar
+
+
 /**
  * loops.cpp
  * @author Spencer Wilson 
@@ -32,6 +37,8 @@ bool DEBUG = false;
 
 // NOTE how we can quickly observe what functions are available.
 // some setup stuff
+// VSCode has hotkeys to go-to definition of each function
+// right click and see what it says
 bool setDebug();
 bool handleMenu( );
 // some fun old stuff
@@ -203,20 +210,44 @@ void doublingPenny( )
 {
     // SET: value = 0.01
     double value = 0.01;
+    // // SET days remaining = 31
+    // // REPEATE while days remaining
+    // int days = 31;
+    // while ( days > 0 ) {
+    //     // Decrease days remaining
+    //     days--;
     // SET days remaining = 31
-    int days = 31;
-
     // REPEATE while days remaining
-    while ( days > 0 ) {
+    // Decrease days remaining
+    int days;   
+    cout << "how many days do you want?" << endl;
+    for ( cin >> days ; days > 0 ; days-- )
+    {
         if ( DEBUG ) cout << "The value is " << value << " with " << days << " remaining to compound interest." << endl;
         // Double the value
-        value *= 2;
-        // Decrease days remaining
-        days--;
+        value *= 2; 
     }
 
-    cout << "After 31 days the value of the magic penny is: " << value << endl;
+    cout << "After " << days << " days the value of the magic penny is: " << value << endl;
 }
+// void doublingPenny( )
+// {
+//     // SET: value = 0.01
+//     double value = 0.01;
+//     // SET days remaining = 31
+//     int days = 31;
+
+//     // REPEATE while days remaining
+//     while ( days > 0 ) {
+//         if ( DEBUG ) cout << "The value is " << value << " with " << days << " remaining to compound interest." << endl;
+//         // Double the value
+//         value *= 2;
+//         // Decrease days remaining
+//         days--;
+//     }
+
+//     cout << "After 31 days the value of the magic penny is: " << value << endl;
+// }
 
 
 
@@ -295,27 +326,40 @@ void division ( )
  * productOfNumbers
  * ask the user how many numbers they want us to find the product of
  * then find that product
- * 
- * we read the above small description
- * we use this to write an algorithm, or psudo code like that written below
  */
 void productOfNumbers()
 {
+    int count, productSoFar, thisNumber;
+
     // BEGIN
     // Ask the user how many numbers they care to get a product of
-    // initialize some partial product tracker
+    cout << "How many numbers will you give me boss?" << endl;
+    cin >> count;
+    // declaring some partial product tracker
+    // productSoFar = 0;  // 0 * n = 0
+    productSoFar = 1; // 1 * n = n
     // REPEATE while more numbers need to be gotten
-        // get the value 
+    while ( count > 0 )
+    {
+        // get the value
+        cout << "May I have a number?" << endl;
+        cin >> thisNumber; 
         // update the partial product tracker
+        // productSoFar * thisNumber;  // not quite enough
+        productSoFar = productSoFar * thisNumber;  // not quite enough
             // CHALLENGE: what if the product could be known early?
-        // DON'T FORGET: to make sure this loop actually ends...
+        // tricky, don't forget to decrement
+        count--;
+    }
     // SHOW the value of the product
+    cout << "Thank you, I've done all the math the product is: " << productSoFar << endl;
     // END
 
     // ADDED LATE: we should show string iterations...
     
     return;
 }
+
 
 
 /**
@@ -369,7 +413,7 @@ int countChar( string s, char c )
     // have some kind of counter set to 0
     int count = 0;
     // REPEATE: until the full string is read
-    // techincal note: some computers require `unsigned` here. others don't.
+    // TECHNICAL NOTE: some computers need `unsigned` below
     for ( unsigned int i = 0 ; i < s.length() ; i++ )
     {
         // get the left-most unread character
