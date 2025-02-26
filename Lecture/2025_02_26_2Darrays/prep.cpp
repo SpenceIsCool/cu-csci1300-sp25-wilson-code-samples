@@ -1,3 +1,13 @@
+/**
+ * @title prep.cpp
+ * @author Spencer Wilson
+ * @date 2025-02-26
+ * 
+ * This file is made for certifying work for CSCI 1300 lecture Feb 26, 2025
+ * It's not super well organized, but it has many functions that you can play with
+ * Don't forget to comment and uncomment things from main to get it running
+ * of course add code as you see fit to help it all make sense
+ */
 #include<iostream>
 #include<cassert>
 using namespace std;
