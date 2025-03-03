@@ -274,7 +274,7 @@ bool isEquivalentIntArr( int arr1[], int arr2[], int used )
 void testRemoveLargest( )
 {
     cout << endl << endl << "BEGIN: testRemoveLargest" << endl;
-    // int arr1[6] = { 2, 5, 10, 1300, 18, 7 };
+    // int arr1[6] = { 18, 5, 10, 1300, 2, 7 };
     // LIVE: expected next array and asertions possible.
     // assert(false) to trigger an error and know that we have more to do
     assert( false );
@@ -288,9 +288,9 @@ void testRemoveLargest( )
  * remove the largest value of the array
  * shift remaining elements left, return the new used value
  * 
- * e.g. { 5, 1300, 7 } becomes { 5, 7 }
- *      THINK find the index of the largest value
- *      THEN shift remaining values to the left
+ * e.g. { 18, 5, 10, 1300, 2, 7 } becomes { 18, 5, 10, 2, 7 }
+ *      THINK find the index of the largest value (1300 is at index 3)
+ *      THEN shift remaining values to the left (shift 4 to 3, 5 to 4, 6 to 5 ORDER MATTERS)
  * 
  * NOTE: returns the new used value
  * NOTE: changes the arr using pass-by-reference

@@ -134,7 +134,7 @@ double getProd1D( double arr[ ], int used )
     // for ( int i = 1 ; i < used ; i++ )
     // {
     //     double elmt = arr[i];
-    //     prodSoFar *= elmt;
+    //     prodSoFar = prodSoFar * elmt;
     // }
     // return prodSoFar;
 
@@ -274,10 +274,25 @@ bool isEquivalentIntArr( int arr1[], int arr2[], int used )
 void testRemoveLargest( )
 {
     cout << endl << endl << "BEGIN: testRemoveLargest" << endl;
-    // int arr1[6] = { 2, 5, 10, 1300, 18, 7 };
-    // LIVE: expected next array and asertions possible.
-    // assert(false) to trigger an error and know that we have more to do
-    assert( false );
+    int arr1[6] = { 2, 5, 10, 1300, 18, 7 };
+    int arr2Expected[6] = { 2, 5, 10, 18, 7 };
+    int used2Expected = 5;
+    int used2 = removeLargest( arr1, 6 );
+    assert( used2 == used2Expected );
+    assert( isEquivalentIntArr( arr1, arr2Expected, used2 ) );
+
+    int arr3Expected[6] = { 2, 5, 10, 7 };
+    int used3Expected = 4;
+    int used3 = removeLargest( arr1, 5 );
+    assert( used3 == used3Expected );
+    assert( isEquivalentIntArr( arr1, arr3Expected, used3 ) );
+    
+    removeLargest( arr1, 4 );
+    removeLargest( arr1, 3 );
+    removeLargest( arr1, 2 );
+    removeLargest( arr1, 1 );
+    int arrLateExpected[6] = { };
+    assert( isEquivalentIntArr( arr1, arrLateExpected, 0 ) );
     cout << "ALL TESTS PASSED: testRemoveLargest" << endl;
     return;
 }
@@ -301,8 +316,59 @@ void testRemoveLargest( )
  */
 int removeLargest( int arr[] , int used )
 {
+    // set to true for nice printing and debugging.
+    bool debug = false;
+
     // LIVE: how do we do this? psudo code first
-    return -1;
+    // get largest values index
+    int x = getIndexOfLargestValue( arr, used );
+    // REPEATE for evertyhing to the right of that index
+
+    // // WHY getting an off by 1 error? for:
+    // for ( int i = x + 1 ; i < used ; i++ )
+    // {
+    //     int next = arr[i];
+    //     arr[i-1] = next;
+    // }
+
+    if ( debug )
+    {
+        printIntArray("before", arr, used);
+    }
+
+    // CHOOSE ONE of the following
+    // switch given for practice
+    // no you don't need a switch here...
+    char choice = 'a';
+    switch (choice)
+    {
+        case 'a':
+            for ( int i = x ; i < used ; i++ )
+            {
+                int next = arr[i+1];
+                arr[i] = next;
+            }
+            break;
+        case 'b':
+            // x + 1 was already one to the right of what we wish to delete
+            for ( int i = x + 1 ; i < used ; i++ )
+            {
+                int next = arr[i];
+                arr[i-1] = next;
+            }
+            break;
+        default:
+            cout << "Something went horridly wrong" << endl;
+            return -1;
+    }
+
+    if ( debug )
+    {
+        printIntArray("after", arr, used - 1);
+    }
+    // not covered live at lecture 200 section
+    // but we do need to return the new used value
+    return used - 1;
 }
 
 
