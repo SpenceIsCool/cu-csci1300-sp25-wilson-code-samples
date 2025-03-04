@@ -17,7 +17,6 @@ using namespace std;
 void traverse1D();
 void traverse1DImproved( int arr[], const int SIZE );
 int findLargestValue( int arr[], const int SIZE );
-int findIndexOfLargestValue( int arr[], const int SIZE );
 int findLargestValueImproved( int arr[], const int SIZE );
 int findSmallestValue( int arr[], const int SIZE );
 int findIndexOfSmallestValue( int arr[], const int SIZE );
@@ -76,19 +75,19 @@ void swap2()
  */
 void copyArray()
 {
-const int MY_SIZE = 8;
-int my_arr[ MY_SIZE ] = { 13, 21, 5, 1, 2, 3, 8, 1 };
+    const int MY_SIZE = 8;
+    int my_arr[ MY_SIZE ] = { 13, 21, 5, 1, 2, 3, 8, 1 };
 
-// // error: array initializer must be an initializer list
-// int my_arr_copy[ MY_SIZE ] = my_arr;
+    // // error: array initializer must be an initializer list
+    // int my_arr_copy[ MY_SIZE ] = my_arr;
 
-int my_arr_copy[ MY_SIZE ] = {};
-for ( int i = 0 ; i < MY_SIZE ; i++ )
-{
-    my_arr_copy[ i ] = my_arr[ i ];
-}
+    int my_arr_copy[ MY_SIZE ] = {};
+    for ( int i = 0 ; i < MY_SIZE ; i++ )
+    {
+        my_arr_copy[ i ] = my_arr[ i ];
+    }
 
-// add a new traversal to print the array if you're interested
+    // add a new traversal to print the array if you're interested
 
     return;
 }
