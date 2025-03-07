@@ -10,6 +10,9 @@
 #include<cassert>
 using namespace std;
 
+void iStringStream();
+void constructorSample();
+void rightArrow();
 void demoStringManip();
 // https://www.geeksforgeeks.org/stringstream-c-applications/
 int countWords(string str);
@@ -21,12 +24,100 @@ void handleYesNo( string fName );
 
 int main()
 {
-    demoStringManip();
-    autoTestCountWords();
-    humanTestingCountWords();
+    iStringStream();
+    // constructorSample();
+    // rightArrow();
+    // demoStringManip();
+    // autoTestCountWords();
+    // humanTestingCountWords();
     return 0;
 }
 
+
+void iStringStream()
+{
+    cout << "ISS sample >>" << endl;
+    istringstream iss("Space 1998 2011 ManyNations");
+    string location, builders;
+    int start, end;
+    iss >> location >> start >> end >> builders;
+    cout << "location: " << location << endl;
+    cout << "start: " << start << endl;
+    cout << "end: " << end << endl;
+    cout << "builders: " << builders << endl;
+
+    cout << "ISS sample getline" << endl;
+    istringstream iss2("Space~1998~2011~many nations");
+    string tmp;
+    getline( iss2, location, '~');
+    getline( iss2, tmp, '~');
+    start = stoi(tmp);
+    getline( iss2, tmp, '~');
+    end = stoi(tmp);
+    getline( iss2, builders, '~');
+    cout << "location: " << location << endl;
+    cout << "start: " << start << endl;
+    cout << "end: " << end << endl;
+    cout << "builders: " << builders << endl;
+
+    cout << "ISS together" << endl;
+    istringstream iss3("Is in outerspace^1998 2011 many nations built this$");
+    getline( iss3, location, '^' );
+    iss3 >> start >> end;
+    getline( iss3, builders, '$' );
+    cout << "location: " << location << endl;
+    cout << "start: " << start << endl;
+    cout << "end: " << end << endl;
+    cout << "builders: " << builders << endl;
+
+    return;
+}
+
+void constructorSample()
+{
+    // string str = "This,is,a,string";
+    // stringstream sstr(str);
+    // string word[4];
+    // int i = 0;
+    // while( getline(sstr, word[i], 'i') ) {
+    //     i++;
+    // }
+    // cout << word[2] << endl;
+
+    stringstream sstr( "This,is,a,string" );
+    string word[4];
+    for ( int i = 0; getline(sstr, word[i], 'i') ; i++ );
+    cout << word[2] << endl;
+    cout << "sstr is still: " << sstr.str() << endl;
+    cout << "I'm surprised by the above result" << endl;
+
+    stringstream ss4("yankee~zulu~moretext");
+    string x;
+    cout << "ss4 initialized: " << ss4.str() << endl;
+    getline( ss4, x, '~');
+    cout << "x: " << x << endl;
+    ss4 << "echo~";
+    ss4 << "foxtrot~";
+    getline( ss4, x, '~');
+    cout << "x: " << x << endl;
+    getline( ss4, x, '~');
+    cout << "x: " << x << endl;
+    cout << "ss4 lacks zulu!? " << ss4.str() << endl;
+    cout << "I'm surprised by the above result" << endl;
+
+    return;
+}
+void rightArrow()
+{
+    stringstream y("hello there\nsup");
+    cout << "y: " << y.str() << endl;
+    string z;
+    y >> z;
+    cout << "y >> z: " << z << endl;
+    getline( y, z, 'e' );
+    cout << "getline( y, z, 'e' ): " << z << endl;
+    return;
+}
 
 void demoStringManip()
 {
