@@ -34,6 +34,9 @@ int main()
         cout << "ALL TESTS PASSED!" << endl;
     }
 
+    // Q200: why is the menu directly in main? 
+    //       I usually don't put it here like this, but I was having
+    //       struct issues this morning. Will try to update for wednesday
     while ( keepGoing )
     {
         int input = -1;
@@ -49,6 +52,7 @@ int main()
                     << "6. review your stats" << endl
                     << "7. save and exit" << endl;
             cin >> input;
+            cin.ignore(); // great practice after >>
             if ( input <= 0 || input > 7 )
             {
                 cout << "Does not compute, please input a valid input" << endl;
@@ -58,11 +62,9 @@ int main()
         switch ( input )
         {
             case 1:
-                // SPWI
                 myOnlyPlayer = { "", 0, 0, 0 };
                 cout << "What is the characters name?" << endl;
                 // cin >> p.name;  // works, but I want to allow spaces like "Miss Fortune"
-                cin.ignore(); // needed due to something about the menu... I don't get it... and I don't care right now...
                 getline( cin, myOnlyPlayer.name );
                 break;
             case 2:
@@ -80,6 +82,13 @@ int main()
                     // it should be of the form
                     // name,killCount,deathCount,assistCount,killsInARow;
                     getline( saveFileReader, myOnlyPlayer.name, ',' );
+                    // Q200: What is stoi?
+                    //       Lecture from Friday has some more detail
+                    //       getline requires a string 
+                    //       tmp is a string
+                    //       but I expected it to be an integer
+                    //       stoi: sTRING to iNTEGER
+                    //       note also: stod: sTRING to dOUBLEw
                     getline( saveFileReader, tmp, ',' );
                     myOnlyPlayer.killCount = stoi(tmp);
                     getline( saveFileReader, tmp, ',' );
@@ -125,6 +134,7 @@ int main()
                 break;
             case 7:
                 keepGoing = false;
+                // ofstream saveFileWriter
                 saveFileWriter.open( saveFileName );
                 if ( saveFileWriter.fail( ) )
                 {
@@ -178,7 +188,10 @@ void testPC()
 
 void displayPC( PlayableCharacter pc )
 {
-    cout << pc.name << ": " << pc.killCount << "/" << pc.deathCount << "/" << pc.assistCount << endl;
+    cout << pc.name << ": " 
+         << pc.killCount << "/" 
+         << pc.deathCount << "/" 
+         << pc.assistCount << endl;
     return;
 }
 
