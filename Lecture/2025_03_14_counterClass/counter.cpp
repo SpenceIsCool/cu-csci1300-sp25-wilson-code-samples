@@ -27,7 +27,7 @@ int main()
 
 Counter::Counter()
 {
-    this->count = 0;
+    count = 0;
 }
 
 void Counter::look() const
@@ -37,11 +37,11 @@ void Counter::look() const
 
 void Counter::click()
 {
-    this->count++;
+    count++;
 }
 
 void Counter::reset()
 {
-    this->count = 0;
+    count = 0;
 }
 
