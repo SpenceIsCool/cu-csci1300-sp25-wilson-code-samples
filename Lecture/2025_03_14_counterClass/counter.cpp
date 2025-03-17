@@ -32,7 +32,7 @@ Counter::Counter()
 
 void Counter::look() const
 {
-    cout << "COUNT: " << this->count << endl;
+    cout << "COUNT: " << count << endl;
 }
 
 void Counter::click()
