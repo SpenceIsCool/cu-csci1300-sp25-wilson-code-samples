@@ -7,17 +7,23 @@
  * NOTE layout of file
  * - #includes and namespaces
  * - class declaration
+ * - other function declarations
  * - main
  * - definition of class member functions
+ * - other function definitions
  */
 
 
+//
 // #includes and namespaces
+// 
 #include<iostream>
 using namespace std;
 
 
+//
 // class declaration
+//
 // at a quick glance we have a sense of what this class can do
 /**
  * Counter
@@ -37,12 +43,16 @@ private:
 };  // don't forget the semi-colon
 
 
+//
 // other function declarations
+//
 void testDefault( );
 void testOverload( );
 
 
+//
 // main
+//
 // here we can make a class and call it's methods
 int main()
 {
@@ -51,6 +61,9 @@ int main()
 }
 
 
+//
+// definition of class member functions
+//
 /**
  * Counter
  * The "default constructor"
@@ -129,7 +142,9 @@ void Counter::reset()
 }
 
 
+//
 // other function definitions
+//
 void testDefault( )
 {
     cout << endl << endl << endl
