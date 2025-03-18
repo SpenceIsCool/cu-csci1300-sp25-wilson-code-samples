@@ -15,8 +15,10 @@ int simple_loop( )
 int nested_loop( )
 {
     int x = 0;
-    for ( int y = 0 ; y <= 5 ; y++ ) {
-        for ( int z = 2; z > 0 ; z-- ) {
+    for ( int y = 0 ; y <= 5 ; y++ ) 
+    {
+        for ( int z = 2; z > 0 ; z-- ) 
+        {
             x = z + y;
         }
     }
