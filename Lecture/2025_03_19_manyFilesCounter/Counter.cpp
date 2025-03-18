@@ -3,10 +3,10 @@
  *
  * an implementation file
  *
- * This shall uphold the contract of Counter.hpp
+ * This shall uphold the contract of Counter.h
  * It must define each member function (also called a method) declared in the header file
  */
-#include "Counter.hpp"
+#include "Counter.h"
 #include<iostream>
 #include<ctime>
 using namespace std;

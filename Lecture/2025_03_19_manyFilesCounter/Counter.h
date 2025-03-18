@@ -1,5 +1,5 @@
 /**
- * Counter.hpp
+ * Counter.h
  *
  * A header file
  *

@@ -9,7 +9,7 @@
  * run command:
  * ./runMe.out
  */
-#include "Counter.hpp"  // NOT Counter.cpp
+#include "Counter.h"  // NOT Counter.cpp
 #include<iostream>
 using namespace std;
 
