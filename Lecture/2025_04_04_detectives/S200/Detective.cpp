@@ -34,6 +34,12 @@ Detective::Detective( string name, unsigned short solvedCases )
     _solvedCases = solvedCases;
 }
 
+// Detective::Detective( string x, unsigned short y )
+// {
+//     _name = x;
+//     _solvedCases = y;
+// }
+
 void Detective::print() const
 {
     cout << _name << " has solved " << _solvedCases << " cases." << endl;

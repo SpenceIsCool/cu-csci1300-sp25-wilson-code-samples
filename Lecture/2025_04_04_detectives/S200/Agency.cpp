@@ -145,3 +145,21 @@ void Agency::showAllDetectives() const
     return;
 }
 
+
+
+void Agency::setStaff( Detective staff[], int num_staff )
+{
+    // // NO-NO, staff might not be a real array to handle
+    // hire( staff[0] );
+    // hire( staff[1] );
+    // hire( staff[2] );
+    
+    for ( int i = 0 ; i < num_staff ; i++ )
+    {
+        // _staff[_hired_so_far] = staff[i];
+        // _hired_so_far++;
+        hire( staff[i] );
+    }
+}
+
+
