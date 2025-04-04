@@ -59,7 +59,9 @@ unsigned short Detective::getSolvedCases() const
 
 void Detective::setName( string name )
 {
-    if ( name == "" )
+    // if ( name == "" )
+    // OOPS: that shouldn't use name, but _name instead...
+    if ( _name == "" )
     {
         _name = name;
     }
