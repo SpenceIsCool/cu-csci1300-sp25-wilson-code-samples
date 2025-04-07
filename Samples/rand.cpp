@@ -1,14 +1,16 @@
 /**
  * rand.cpp
  *
- * using rand, generate a psudo-random number
+ * using rand, generate a pseudo-random number
  * use this number to simulate flipping a fair coin
  * print Heads half of the time and Tails half of the time
  * with enough coin flips we should find that coin toss is fair
  */
 #include<iostream>  // cout, cin
-#include<cstdlib>  // srand
-#include<time.h>  // time
+#include<cstdlib>  // srand, rand
+// NOT totally required to include ctime
+// but listed separately here so you know where time() comes from
+#include<ctime>  // time
 using namespace std;
 
 
