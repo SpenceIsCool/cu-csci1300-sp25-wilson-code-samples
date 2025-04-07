@@ -1,11 +1,11 @@
 /** 
- * DetectiveSkelleton.cpp
+ * DetectiveSkeleton.cpp
  *
  * return some default vaue for each function
  * don't implement the functions
  *
  * you should be able to build the object file...
- * g++ -std=c++17 -c DetectiveSkelleton.cpp -o DetectiveSkelleton.o
+ * g++ -std=c++17 -c DetectiveSkeleton.cpp -o DetectiveSkeleton.o
  */
 #include "Detective.h"
 #include<iostream>
