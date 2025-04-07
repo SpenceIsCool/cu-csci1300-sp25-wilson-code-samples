@@ -7,10 +7,21 @@ void showVector( vector<string> s );
 
 int main( )
 {
+    cout << "DISCLAIMER: the following code has obsertavtions (OBSERVE)" << endl
+         << "            each is based on 'undefined behavior' or 'UB'" << endl
+         << "            meaning that your computer might behave differently" << endl
+         << "            if so, update the obeservations for your records" << endl
+         << "            and let us know on Ed what you discover about your computer" << endl;
+
+
     vector< string > v;
     showVector( v );
-    cout << v.max_size() << endl;
 
+    cout << endl
+         << endl
+         << ">>>> adding and delting some string" << endl
+         << "OBSERVE: using a function to print the vector" << endl
+         << "         causing the vector to force a resize of its capacity" << endl;
     v.push_back( "hello" );
     showVector( v );
 
@@ -96,7 +107,7 @@ void showVector( vector<string> s )
     {
         cout << "__ , ";
     }
-    cout << "} [capacity: " << v.capacity() << "]" << endl;
+    cout << "} [capacity: " << s.capacity() << "]" << endl;
 }
 
 
