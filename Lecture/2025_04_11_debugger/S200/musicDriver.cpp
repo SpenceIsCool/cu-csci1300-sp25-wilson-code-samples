@@ -25,7 +25,12 @@ using namespace std;
 
 int main( )
 {
-    string fileName = "songs.txt";
+    // string fileName = "songs.txt";
+    // fine, but let's get user input....
+    cout << "I can haz filename?" << endl;
+    string fileName;
+    cin >> fileName;
+    
 
     // make a file, open it and read it
     // ifstream myFile;
