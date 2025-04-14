@@ -41,7 +41,7 @@ GradeAsPercentage::GradeAsPercentage( ) {
 
 GradeAsPercentage::GradeAsPercentage( char percentage ) {
     _percentage = percentage;
-    _percentage %= 100;
+    _percentage %= 101;
 }
 
 unsigned short GradeAsPercentage::getPercentage( ) {
@@ -50,7 +50,7 @@ unsigned short GradeAsPercentage::getPercentage( ) {
 
 void GradeAsPercentage::setPercentage( char percentage ) {
     _percentage = percentage;
-    _percentage %= 100;
+    _percentage %= 101;
 }
 
 
