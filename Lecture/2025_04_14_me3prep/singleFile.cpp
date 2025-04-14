@@ -1,32 +1,47 @@
 /**
- * me3Prep.cpp
+ * singleFile.cpp
+ * 
+ * BUILD:alignof
+ * g++ -std=c++17 -Wall -Werror -Wpedantic -Wsign-compare singleFile.cpp
  * 
  * DISCLAIMER: the following code is not extensively tested
  * 
- * SPWI: complete description
+ * note that the mulitple file version of this is also available in the same folder as this on GitHub
  */ 
 #include<iostream>
 using namespace std;
 
 
-// SPWI: fill in comments
-class GradeAsPercentage {  //
-private:  // 
-    char _percentage;  // 
-public:  // 
-    GradeAsPercentage( );  // 
-    GradeAsPercentage( char percentage );  // 
-    unsigned short getPercentage( );  // 
-    void setPercentage( char percentage );  // 
-    unsigned short representation;  // 
-};  // 
 
+
+
+
+// ideally it's own file gradeAsPercentage.h if GRADE_AS_PERCENTAGE_H ifndef
+class GradeAsPercentage {  // the class declaration
+private:  // a keyword for encapsulation (hiding stuff)
+    char _percentage;  // data member (M)
+public:  // a keyword for controlling how people can deal with the encapsulated data
+    GradeAsPercentage( );  // member function (F), specifically a constructor (C), specifically the default constructor
+    GradeAsPercentage( char percentage );  // member function (F), specifically a constructor (C), specifically the parameterized constructor
+    unsigned short getPercentage( );  // member function (F)
+    void setPercentage( char percentage );  // member function (F) 
+    unsigned short representation;  // data member (M) typically private only, but it doesn't have to be. this one isn't implemented anywhere
+};  // don't forget the `;`
+
+
+
+
+
+
+
+// ideally it's own gradeAsPercentage.cpp
 GradeAsPercentage::GradeAsPercentage( ) {
     _percentage = 0;
 }
 
 GradeAsPercentage::GradeAsPercentage( char percentage ) {
     _percentage = percentage;
+    _percentage %= 100;
 }
 
 unsigned short GradeAsPercentage::getPercentage( ) {
@@ -40,6 +55,10 @@ void GradeAsPercentage::setPercentage( char percentage ) {
 
 
 
+
+
+
+// ideally it's own file gradebook.h if GRADEBOOK_H ifndef
 class Gradebook {
 public:
     Gradebook( );
@@ -58,6 +77,12 @@ private:
     GradeAsPercentage _final;
 };
 
+
+
+
+
+
+// ideally it's own gradebook.cpp
 unsigned short Gradebook::find_iterations( unsigned short count ) {
     unsigned short max_iterations = 0;
     if ( count > _MAX_MIDTERMS ) max_iterations = _MAX_MIDTERMS;
@@ -67,63 +92,10 @@ unsigned short Gradebook::find_iterations( unsigned short count ) {
 
 Gradebook::Gradebook( ) {
     // _midterms is set for us automatically
+    // this is becauge GradeAsPercentage has a default constructor
+    // if not, we would have a problem...
     _final = GradeAsPercentage( 0 );
 }
-
-// ASSUME the rest is implemented, or you will be asked to implement it.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// HIDDEN FROM SHEET:
-int main( ) {
-
-    // default constructor, splitting declaration and initialization
-    GradeAsPercentage me1;
-    me1 = GradeAsPercentage();
-    me1.setPercentage( 66 );
-
-    // default constructor, combining declaration and initialization
-    GradeAsPercentage me2 = GradeAsPercentage();
-    me2.setPercentage( 64 );
-
-    // parameterized constructor
-    GradeAsPercentage me3 = GradeAsPercentage( 65 );
-
-    // creating array (required in C++ due to pass by reference behavior)
-    GradeAsPercentage arr[3] = { me1, me2, me3 };
-
-    // parameterized constructor
-    Gradebook gb = Gradebook( arr, 1, { 98 } );
-    gb.showTotal();
-
-
-    // change some grades...
-    GradeAsPercentage differentMidterms[3] = { {98}, {85}, {70} };
-    gb.setMidterms( differentMidterms, 3 );
-    gb.setFinal( {75} );
-    gb.showTotal(); 
-}
-
-
-
-
-
-
-
-
-
-
 
 Gradebook::Gradebook( GradeAsPercentage final ) {
     _final = final;
@@ -191,3 +163,75 @@ GradeAsPercentage Gradebook::getFinal( ) {
 void Gradebook::setFinal( GradeAsPercentage final ) {
     _final = final;
 }
+
+
+
+
+
+
+
+
+
+
+
+// ideally in it's own driver file like gradebookDriver.cpp
+void scenario1();
+void scenario2();
+
+
+int main( ) {
+    scenario1();
+    scenario2();
+}
+
+
+/**
+ * scenario 1: 
+ * final exam grade replacement used
+ */
+void scenario1() {
+    // default constructor, splitting declaration and initialization
+    GradeAsPercentage me1;
+    me1 = GradeAsPercentage();
+    me1.setPercentage( 66 );
+
+    // default constructor, combining declaration and initialization
+    GradeAsPercentage me2 = GradeAsPercentage();
+    me2.setPercentage( 64 );
+
+    // parameterized constructor
+    GradeAsPercentage me3 = GradeAsPercentage( 65 );
+
+    // creating array (required in C++ due to pass by reference behavior)
+    GradeAsPercentage arr[3] = { me1, me2, me3 };
+
+    // parameterized constructor
+    Gradebook gb = Gradebook( arr, 1, { 98 } );
+    gb.showTotal();
+}
+
+
+/**
+ * scenario 2
+ * actual average used
+ */
+void scenario2() {
+
+
+    Gradebook gb = Gradebook();
+    GradeAsPercentage differentMidterms[3] = { {98}, {85}, {70} };
+    gb.setMidterms( differentMidterms, 3 );
+    gb.setFinal( {75} );
+    gb.showTotal(); 
+}
+
+
+
+
+
+
+
+
+
+
+
