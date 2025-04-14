@@ -19,13 +19,13 @@ using namespace std;
 // ideally it's own file gradeAsPercentage.h if GRADE_AS_PERCENTAGE_H ifndef
 class GradeAsPercentage {  // the class declaration
 private:  // a keyword for encapsulation (hiding stuff)
-    char _percentage;  // data member (M)
+    char _percentage;  // data member (D)
 public:  // a keyword for controlling how people can deal with the encapsulated data
     GradeAsPercentage( );  // member function (F), specifically a constructor (C), specifically the default constructor
     GradeAsPercentage( char percentage );  // member function (F), specifically a constructor (C), specifically the parameterized constructor
     unsigned short getPercentage( );  // member function (F)
     void setPercentage( char percentage );  // member function (F) 
-    unsigned short representation;  // data member (M) typically private only, but it doesn't have to be. this one isn't implemented anywhere
+    unsigned short representation;  // data member (D) typically private only, but it doesn't have to be. this one isn't implemented anywhere
 };  // don't forget the `;`
 
 
