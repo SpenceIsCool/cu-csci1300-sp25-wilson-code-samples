@@ -25,6 +25,7 @@ vector<Book> selectionSort( vector<Book> books );
 // TODO: try it yourself
 // vector<Book> insertionSort( vector<Book> books );
 vector<Book> quickSort( vector<Book> books );
+vector<Book> mergeSort( vector<Book> books );
 void writeToFile( vector<Book> books, string fileName );
 
 
@@ -58,6 +59,10 @@ int main()
     vector<Book> booksSortedByQuickSort = quickSort( booksUnsorted );
     cout << "FULL QUICK SORT:" << endl;
     showBooks( booksSortedByQuickSort );
+
+    vector<Book> booksSortedByMergeSort = mergeSort( booksUnsorted );
+    cout << "FULL MERGE SORT:" << endl;
+    showBooks( booksSortedByMergeSort );
 
     writeToFile( booksSortedByQuickSort, "sortedBooks.txt" );
 
@@ -297,6 +302,80 @@ vector<Book> quickSort( vector<Book> books )
 }
 
 
+/**
+ * mergeSort
+ */
+vector<Book> mergeSort( vector<Book> books )
+{
+    bool debug = false;
+    
+    // BASE CASE
+    size_t size = books.size();
+    if ( size <= 1 ) 
+    {
+        if ( debug )
+        {
+            cout << "------- base case" << endl;
+            showBooks( books );
+        }
+        return books;
+    }
+
+    // RECURSIVE CASE
+    // split roughly in half
+    size_t splitPoint = size/2;
+    vector<Book> v1, v2;
+    v1.insert( v1.begin(), books.begin(), books.begin() + splitPoint );
+    v2.insert( v2.begin(), books.begin() + splitPoint, books.end() );
+    if ( debug ) cout << "<<<< split at " << books.at( splitPoint ) << endl;
+
+    // repeate the full process (recursion)
+    v1 = mergeSort( v1 );
+    v2 = mergeSort( v2 );
+    if ( debug ) cout << ">>> the partials are sorted" << endl;
+
+    // merge them back together
+    vector<Book> result;
+    size_t v1Index, v2Index;
+    v1Index = 0;
+    v2Index = 0;
+    for ( size_t i = 0 ; i < max( v1.size(), v2.size() ) ; i++ )
+    {
+        if ( v1Index == v1.size() || v2Index == v2.size() ) break;
+        Book v1Value = v1.at( v1Index );
+        Book v2Value = v2.at( v2Index );
+        if ( debug ) cout << "<?> COMPARING" << v1Value << " ??? " << v2Value << endl;
+
+        if ( v1Value.author < v2Value.author 
+             || ( v1Value.author == v2Value.author && v1Value.title < v2Value.title ) )
+        {
+            result.push_back( v1Value );
+            v1Index++;
+        }
+        else
+        {
+            result.push_back( v2Value );
+            v2Index++;
+        }
+    }
+    // if ( v1Index < v1.size() )
+    for (; v1Index < v1.size(); v1Index++)
+    {
+        result.push_back( v1.at( v1Index ) );
+    }
+    // else if ( v2Index >= v2.size() )
+    for (; v2Index < v2.size(); v2Index++)
+    {
+        result.push_back( v2.at( v2Index ) );
+    }
+
+    return result;
+}
+
+
+/**
+ * writeToFile
+ */
 void writeToFile( vector<Book> books, string fileName )
 {
     ofstream f( fileName );
