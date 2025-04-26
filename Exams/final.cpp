@@ -1,12 +1,17 @@
-// exam.cpp
-#include<sstream>
-#include<fstream>
+// _exam.cpp
+#include<sstream>  // istringstream, ostringstream
+#include<fstream>  // ifstream, ofstream
 #include<iostream>
-#include<cassert>
+#include<cassert>  // assert
+#include<cmath>  // trunc
 #include<vector>
 using namespace std;
 
 void confirmTest();
+
+
+string g( string x );
+void testAllG();
 
 string foo( string x );
 void testFoo( string x, string expected );
@@ -38,13 +43,30 @@ void testAllRmEvenIndices( );
 void stripComments( string ifn, string ofn );
 void testStream();
 
+class NumBox {
+public:
+    NumBox();
+    NumBox( float value );
+    float getValue( );
+    unsigned short getAccessCount( );
+    void setValue( float value );
+private:
+    float _value;
+    unsigned short _accessCount;
+    void _magic( );
+};
+void testAllNumBox();
+
 int main()
 {
-    testAllFoo();
-    testAllCount();
-    testAllMat();
-    testAllRmEvenIndices();
-    testStream();
+    testAllG();
+    // testAllFoo();
+    // testAllCount();
+    // testAllMat();
+    // testAllRmEvenIndices();
+    // testStream();
+    // testAllNumBox();
+
     cout << "$$$$$ ALL TESTS PASSED" << endl;
     return 0;
 }
@@ -75,6 +97,45 @@ void confirmTest()
     confirmTest();
     return;
 }
+
+
+
+
+
+
+
+string g( string x )
+{
+    string y = "";
+    switch ( x.length( ) % 3 ) {
+    case 0:
+        y += "Alpha";
+        break;
+    case 1:
+        y += "Bravo";
+        break;
+    case 2:
+        y += "Charlie";
+        y = "break";
+    case 3:
+        y += "Delta";
+    default:
+        y = "Echo" + y;
+    }
+    return y;
+}
+void testAllG()
+{
+    assert( g( "" ) == "Alpha" );
+    assert( g( "3" ) == "Bravo" );
+    assert( g( "ab" ) == "EchobreakDelta" );
+    assert( g( "san" ) == "Alpha" );
+}
+
+
+
+
+
 
 
 
@@ -362,4 +423,65 @@ void testStream()
          << "does out.txt not have the lines that begin with 'COMMENT :'?" << endl;
     confirmTest();
     return;
+}
+
+
+
+NumBox::NumBox() {
+    _accessCount = 0;
+    _value = 0;
+}
+NumBox::NumBox( float value ) {
+    _accessCount = 0;
+    _value = value;
+    _magic();
+}
+float NumBox::getValue( ) {
+    _accessCount++;
+    return _value;
+}
+unsigned short NumBox::getAccessCount( ) {
+    // return _accessCount++;  // kind of advance post-increment... 
+    unsigned short res = _accessCount;
+    _accessCount++;
+    return res;
+}
+void NumBox::setValue( float value ) {
+    _accessCount++;
+    _value = value;
+    _magic();
+    return;
+}
+void NumBox::_magic( ) {
+    int i = _value; 
+    if ( i % 2 == 1 ) _value = i - 1;
+    // ADVANCED PLAYERS USE: 
+    // if ( i % 2 == 1 ) _value = _accessCount - 1;
+    else _value = i;
+    _value += 0.5;
+}
+
+
+
+void testAllNumBox()
+{
+    NumBox o( 7.2  );
+    float x = o.getValue( );
+    o.setValue( x * 2 );
+    float y = o.getValue( );
+    unsigned short z = o.getAccessCount();
+
+    cout << "x: " << x << endl
+         << "y: " << y << endl
+         << "z: " << z << endl;
+    assert( x == 6.5 );
+    assert( y == 12.5 );
+    assert( z == 3 );
+
+    z = o.getAccessCount();
+    assert( z == 4 );
+
+    z = o.getAccessCount();
+    assert( z == 5 );
+
 }
